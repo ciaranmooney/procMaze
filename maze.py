@@ -2,13 +2,6 @@
 
 import random
 
-start = []
-
-for i in range(10):
-    start.append(random.randint(0,1))
-
-print start
-
 def next_row(start_row):
     next_row = [0]*len(start_row)
     for each in enumerate(start_row):
@@ -21,12 +14,23 @@ def next_row(start_row):
                 next_row[index] = random.randint(0,1)
     return next_row
 
-grid = [start]
-grid.append(next_row(start))
-i = 1
-while i < len(start):
-    grid.append(next_row(grid[1]))
-    i = i + 1
+def create_maze(size):
+    start = []
 
-for row in grid:
-    print row
+    for i in range(size):
+        start.append(random.randint(0,1))
+
+    grid = [start]
+    grid.append(next_row(start))
+    i = 1
+    while i < len(start):
+        grid.append(next_row(grid[1]))
+        i = i + 1
+
+    return grid
+
+maze = create_maze(10)
+
+for row in maze:
+    print(row)
+
